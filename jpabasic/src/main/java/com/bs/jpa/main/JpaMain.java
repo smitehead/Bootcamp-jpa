@@ -1,7 +1,9 @@
 package com.bs.jpa.main;
 
 import com.bs.jpa.common.JPATemplate;
+import com.bs.jpa.controller.AssociationController;
 import com.bs.jpa.controller.BasicController;
+import com.bs.jpa.controller.LectureController;
 import com.bs.jpa.model.entity.BasicEntity;
 
 import jakarta.persistence.EntityManager;
@@ -27,7 +29,20 @@ public class JpaMain {
 //		bc.update(em, 1L);
 //		System.out.println(bc);
 //		bc.delete(em, 20L);
-		bc.select(em);
+//		bc.select(em);
+		
+		AssociationController ac = new AssociationController();
+//		ac.oneToManyTest(em);
+//		ac.oneToManyTest2(em);
+//		ac.insertTest(em);
+//		ac.removeLesson(em, 8L);
+		ac.searchData(em);
+		
+	
+		LectureController lc = new LectureController();
+//		lc.LectureInsert(em);
+//		lc.selectTest(em);
+//		lc.removeTest(em, 2L);
 		
 	}
 }

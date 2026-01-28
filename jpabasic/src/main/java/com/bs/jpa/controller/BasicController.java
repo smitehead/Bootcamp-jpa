@@ -9,9 +9,11 @@ import com.bs.jpa.model.entity.Address;
 import com.bs.jpa.model.entity.BasicEntity;
 import com.bs.jpa.model.entity.MemberEntity;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
+
 
 public class BasicController {
 	public void basicEntityUse(EntityManager em) {
