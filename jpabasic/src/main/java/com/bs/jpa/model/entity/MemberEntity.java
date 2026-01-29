@@ -35,10 +35,11 @@ import lombok.NoArgsConstructor;
 //테이블에 관련된 설정
 @Table(name="MEMBER_ENTITY_BS", 
 uniqueConstraints = @UniqueConstraint(name="uq_phone_id",
-							columnNames = {"MEMBER_ID","MEMBER_PHONE"}),
-indexes = {
-		@Index(name="idx_memberid11", columnList="MEMBER_ID,MEMBERNAME")
-})
+							columnNames = {"MEMBER_ID","MEMBER_PHONE"})
+//indexes = {
+//		@Index(name="idx_memberid11", columnList="MEMBER_ID,MEMBERNAME")
+//}
+)
 //시퀸스 객체 만들기
 //여기 네임은 영속성 컨텍스트에서 가지는 이름
 @SequenceGenerator(name="seqMemberNo" , sequenceName="seq_member_no_tw" ,

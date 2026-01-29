@@ -1,6 +1,11 @@
 package com.bs.jpa.controller;
 
-import com.bs.jpa.common.Local;
+import java.time.LocalDate;
+
+import com.bs.jpa.common.Gender;
+import com.bs.jpa.model.entity.manytomany.CartEntity;
+import com.bs.jpa.model.entity.manytomany.CustomerEntity;
+import com.bs.jpa.model.entity.manytomany.ProductEntity;
 import com.bs.jpa.model.entity.onetomany.DepartmentEntity;
 import com.bs.jpa.model.entity.onetomany.EmployeeEntity;
 import com.bs.jpa.model.entity.onetomany.LessonBs;
@@ -135,6 +140,85 @@ public class AssociationController {
 		LessonBs l = em.find(LessonBs.class, 12L);
 		System.out.println(l);
 	}
+	public void manyTomanyTest(EntityManager em) {
+		EntityTransaction et = em.getTransaction();
+		et.begin();
+		
+		ProductEntity p = ProductEntity.builder()
+				.productName("RAM")
+				.price(200000)
+				.discount(0.2)
+				.build();
+		ProductEntity p1 = ProductEntity.builder()
+				.productName("그래픽카드")
+				.price(200000)
+				.discount(0.1)
+				.build();
+		em.persist(p);
+		em.persist(p1);
+		CustomerEntity c = CustomerEntity.builder()
+				.customerName("바나나씨")
+				.age(22)
+				.gender(Gender.M)
+				.address("바나나시")
+				.build();
+		CustomerEntity c1 = CustomerEntity.builder()
+				.customerName("나나씨")
+				.age(19)
+				.gender(Gender.F)
+				.address("캔디왕국")
+				.build();
+		
+		CustomerEntity c2 = CustomerEntity.builder()
+				.customerName("나나바씨")
+				.age(19)
+				.gender(Gender.F)
+				.address("캔디왕국")
+				.build();
+		
+		em.persist(c1);
+		em.persist(c);
+		em.persist(c2);
+		
+		
+//		p.setCustomers(List.of(c,c1,c2));
+//		p1.setCustomers(List.of(c,c1));
+		System.out.println(c);
+		et.commit();
+		
+		
+	}
+	public void manyToManySearch(EntityManager em) {
+		ProductEntity target = em.find(ProductEntity.class, 27L);
+//		CustomerEntity c = target.getCustomers().get(0);
+		System.out.println(target);
+	}
+	
+	
+	public void manyTomanyTest1(EntityManager em) {
+		EntityTransaction et = em.getTransaction();
+		et.begin();
+		ProductEntity p = em.find(ProductEntity.class, 27L);
+		ProductEntity p1 = em.find(ProductEntity.class, 28L);
+		
+		CustomerEntity c= em.find(CustomerEntity.class, 41L);
+		CustomerEntity c1= em.find(CustomerEntity.class, 42L);
+		CustomerEntity c2= em.find(CustomerEntity.class, 43L);
+		
+		CartEntity cart = CartEntity.builder()
+				.cartCount(3)
+				.products(p)
+				.customers(c)
+				.cartDate(LocalDate.now())
+				.build();
+		
+		em.persist(cart);
+		c.getProducts().add(cart);
+		p.getCustomers().add(cart);
+		et.commit();
+		
+	}
+	
 	
 
 }

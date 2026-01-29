@@ -61,13 +61,10 @@ public class LectureController {
 		st1.setLt(lt2);
 		st2.setLt(lt2);
 
-
 		em.persist(st1);
 		em.persist(st);
 		em.persist(st2);
 		em.persist(st3);
-
-
 		
 		et.commit();
 	}

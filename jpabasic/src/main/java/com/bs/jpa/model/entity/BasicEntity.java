@@ -17,10 +17,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 
-@Entity
-@Table(name="BASICENTITY_TW")
-@SequenceGenerator(name="seqBasicNo" , sequenceName = "seq_basicno_tw" , 
-initialValue = 10, allocationSize = 1)
+//@Entity
+//@Table(name="BASICENTITY_TW")
+//@SequenceGenerator(name="seqBasicNo" , sequenceName = "seq_basicno_tw" , 
+//initialValue = 10, allocationSize = 1)
 public class BasicEntity {
 	//pk설정을 무조건 해줘야함
 	@Id
