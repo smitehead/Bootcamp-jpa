@@ -1,5 +1,6 @@
 package com.bs.jpa.jpql.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.bs.jpa.jpql.model.entity.BoardEntity;
@@ -179,6 +180,39 @@ public class JPQLController {
 	 * 8.게시글 평균 읽은 수, 최대 읽은 수 ,최소 읽은 수 조회
 	 */
 	
+	public void basicJoin(EntityManager em) {
+		//inner join ,outerJoin fetch join
+		//join을 했을 때 프로젝션으로 선택하지 않은 객체를 조회하지 않는다
+//		String sql="""
+//				select b from BoardEntity b join b.boardWriter m
+//				""";
+//		Query query = em.createQuery(sql);
+//		List<Object[]> result = query.getResultList();
+//		result.forEach(e->{
+//			Arrays.stream(e).forEach(System.out::println);
+//		});
+//		
+//		TypedQuery<BoardEntity> boards = em.createQuery(sql,BoardEntity.class);
+//		boards.getResultStream().forEach(System.out::println);
+		String sql="""
+				select m,b
+				from member m join m.boards b
+				""";
+//		TypedQuery<WebMemberEntity> boards = em.createQuery(sql,WebMemberEntity.class);
+//		boards.getResultStream().forEach(System.out::println);
+		
+		Query query=em.createQuery(sql);
+//		List<Object[]> result=query.getResultList();
+//		result.forEach(e->{
+//			Arrays.stream(e).forEach(System.out::println);
+//		});
+//		
+		//직접 sql문 사용하기 ->권장하지 않음 
+		sql="SELECT GENDER,COUNT(*) FROM MEMBER GROUP BY GENDER";
+		query = em.createNativeQuery(sql);
+		query.getResultStream().forEach(System.out::println);
+	}
+
 }
 
 

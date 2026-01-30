@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data@NoArgsConstructor@AllArgsConstructor@Builder
 
@@ -31,9 +32,10 @@ public class BoardEntity {
 	@Column(name = "board_title")
 	private String boardTitle;
 	
+	@ToString.Exclude
 	@ManyToOne
 	@JoinColumn(name = "BOARD_WRITER")
-	private WebMemberEntity boardWiter;
+	private WebMemberEntity boardWriter;
 	
 	
 	@Column(name="BOARD_CONTENT")
